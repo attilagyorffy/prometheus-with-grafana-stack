@@ -1,20 +1,18 @@
-version: "3.3"
-
 services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
     ports:
-      - "9090:9090" # Expose Prometheus on LAN
+      - "9090:9090"
     volumes:
       - prometheus_data:/prometheus
-      - ./prometheus:/etc/prometheus:ro # Directory must contain prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
 
   grafana:
     image: grafana/grafana-oss:latest
     container_name: grafana
     ports:
-      - "3000:3000" # Expose Grafana on LAN
+      - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
